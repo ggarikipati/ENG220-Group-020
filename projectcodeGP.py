@@ -2,67 +2,48 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# Load data
-@st.cache
-def load_data():
-    return pd.read_csv('filtered_data_updated.csv')
+st.title("Dataset3")
 
-filtered_data_df = load_data()
+# Load dataset
+data = pd.read_csv("./filtered_data_updated.csv")
 
-# Streamlit app
-st.title("Environmental Measurements Dashboard")
+st.write("### Data Preview")
+st.dataframe(data)
 
-# Cascading Filters
-state = st.selectbox("Select State", filtered_data_df['State'].unique())
-county_options = filtered_data_df[filtered_data_df['State'] == state]['County'].unique()
-county = st.selectbox("Select County", county_options)
-material_options = filtered_data_df[
-    (filtered_data_df['State'] == state) & (filtered_data_df['County'] == county)
-]['Material'].unique()
-material = st.selectbox("Select Material", material_options)
+# Visualization logic (same as before)
+columns = data.columns.tolist()
+x_column = st.selectbox("Select X-axis column", columns)
+y_column = st.selectbox("Select Y-axis column", columns)
 
-# Select graph type
-graph_type = st.radio("Select Graph Type", ['Bar Graph', 'Line Graph'])
+graph_type = st.selectbox("Select Graph Type", ["Line", "Scatter", "Bar", "Pie"])
 
-# Filter data based on selections
-filtered_data = filtered_data_df[
-    (filtered_data_df['State'] == state) &
-    (filtered_data_df['County'] == county) &
-    (filtered_data_df['Material'] == material)
-]
+if st.button("Plot Graph"):
+    fig, ax = plt.subplots()
 
-if filtered_data.empty:
-    st.warning("No data available for the selected options.")
-else:
-    # Bar Graph
-    if graph_type == 'Bar Graph':
-        st.subheader(f"Bar Graph on {material} in {county}, {state}")
-        monthly_data = filtered_data.pivot(index='Year', columns='Month', values='Monthly Measurements')
+    if graph_type == "Line":
+        ax.plot(data[x_column], data[y_column], marker='o')
+        ax.set_title(f"{y_column} vs {x_column} (Line Plot)")
 
-        # Yearly average
-        yearly_avg = filtered_data['Yearly Measurement Average'].mean()
+    elif graph_type == "Scatter":
+        ax.scatter(data[x_column], data[y_column])
+        ax.set_title(f"{y_column} vs {x_column} (Scatter Plot)")
 
-        # Plot bar graph
-        fig, ax = plt.subplots(figsize=(12, 6))
-        monthly_data.plot(kind='bar', stacked=False, ax=ax)
-        ax.axhline(y=yearly_avg, color='red', linestyle='--', label='Yearly Average')
-        ax.set_xlabel('Year')
-        ax.set_ylabel(f"Monthly {material} ({'µg/m³' if material == 'PM2.5' else 'ppm' if material in ['CO', 'Ozone'] else 'ppb'})")
-        ax.set_title(f"Bar Graph on {material} in {county}, {state}")
-        ax.legend()
+    elif graph_type == "Bar":
+        ax.bar(data[x_column], data[y_column])
+        ax.set_title(f"{y_column} vs {x_column} (Bar Chart)")
+
+    elif graph_type == "Pie":
+        if len(data[x_column].unique()) <= 10:
+            plt.pie(data[y_column], labels=data[x_column], autopct='%1.1f%%', startangle=90)
+            plt.title(f"{y_column} (Pie Chart)")
+        else:
+            st.error("Pie chart requires fewer unique categories in the X-axis.")
+
+    if graph_type != "Pie":
+        ax.set_xlabel(x_column)
+        ax.set_ylabel(y_column)
         st.pyplot(fig)
-
-    # Line Graph
     else:
-        st.subheader(f"Line Graph on {material} in {county}, {state}")
-        line_data = filtered_data.groupby(['Year', 'Month'])['Monthly Measurements'].mean().reset_index()
-        line_data['Date'] = pd.to_datetime(line_data[['Year', 'Month']].assign(DAY=1))
+        st.pyplot(plt)
 
-        # Plot line graph
-        fig, ax = plt.subplots(figsize=(12, 6))
-        ax.plot(line_data['Date'], line_data['Monthly Measurements'], label=f"{material} Measurements", marker='o')
-        ax.set_xlabel('Year')
-        ax.set_ylabel(f"Monthly {material} ({'µg/m³' if material == 'PM2.5' else 'ppm' if material in ['CO', 'Ozone'] else 'ppb'})")
-        ax.set_title(f"Line Graph on {material} in {county}, {state}")
-        ax.legend()
-        st.pyplot(fig)
+st.write("Tip: Ensure the selected columns are numeric for meaningful plots.")
