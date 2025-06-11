@@ -8,7 +8,7 @@ This project integrates contributions from multiple groups to analyze and visual
 
 ---
 
-### 🔬 **NO₂ Monitoring in South Valley, NM**  
+### **NO₂ Monitoring in South Valley, NM**  
 Contributor: **EC**  
 Using NO₂ (Nitrogen Dioxide) data shared by Group 12, this dashboard focuses on key columns such as *Daily Max 1-Hour Reading*, *Daily AQI*, and *Observed Count*. While initial visualizations had limitations, a refined monthly average analysis of South Valley trends was separately developed for clearer insights.  
 [Streamlit Link](https://eng220-class-group-20-ijdxnhwmzsyc6pbryadtjs.streamlit.app/)
