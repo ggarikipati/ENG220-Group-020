@@ -4,23 +4,26 @@ import streamlit as st
 st.title("Group-020")
 
 st.markdown("""
-This dashboard explores datasets related to mental health, wellness programs, and youth-related funding across the U.S., with an emphasis on New Mexico.
-
-The project analyzes the **distribution of mental health funding**, **wellness program effectiveness**, and **educational grants** designed to support adolescent development. The data is sourced from various state and federal agencies and focuses on both pre-pandemic and post-pandemic funding initiatives.
+This project integrates contributions from multiple groups to analyze and visualize diverse datasets related to air quality, environmental monitoring, and gun violence trends in New Mexico and surrounding states. Each page represents a unique dataset and individual analysis:
 
 ---
 
-### Key Focus Areas:
-
-- **Mental Health Services & Trends**: Explore state-level patterns in mental health needs and service availability.
-- **Youth Development Grants**: Track education- and wellness-related grants distributed across various counties.
-- **Post-COVID Shifts**: Understand how priorities in health and education funding changed during and after the pandemic.
+### 🔬 **NO₂ Monitoring in South Valley, NM**  
+Contributor: **EC**  
+Using NO₂ (Nitrogen Dioxide) data shared by Group 12, this dashboard focuses on key columns such as *Daily Max 1-Hour Reading*, *Daily AQI*, and *Observed Count*. While initial visualizations had limitations, a refined monthly average analysis of South Valley trends was separately developed for clearer insights.  
+[Streamlit Link](https://eng220-class-group-20-ijdxnhwmzsyc6pbryadtjs.streamlit.app/)
 
 ---
 
-Navigate through the pages to interact with individual datasets and visualize insights:
-- `page1.py` – Youth Grants Overview  
-- `page2.py` – Mental Health Services by State  
-- `page3.py` – Community Wellness Initiatives  
+### **Air Quality Comparison Across States**  
+Contributor: **GP**  
+Built using air quality data from Group 8, this interactive dashboard enables users to explore AQI factors across five states: **MN**, **WI**, **MI**, **MT**, and **ND**. Users can select counties and view trends using either a **Bar Chart** or **Line Chart** to observe regional environmental differences.  
+[Streamlit Link](https://finalcodegppy-vumfdtkohha8hzlipqdypx.streamlit.app/)
 
-""")
+---
+
+### **Gun Violence Data Visualization in NM**  
+Contributor: **DT**  
+Using data from Group 12 focused on **gun violence in New Mexico**, this dashboard allows users to view statistics by **date** or **city**, choosing metrics such as *victims injured*, *suspects injured*, *killed*, or *arrested*. All visualizations are presented as **bar charts** for intuitive comparisons.  
+[Streamlit Link](https://untitled2py-2zn5bldhgddpnjthbjxykd.streamlit.app/)
+
