@@ -25,5 +25,5 @@ Built using air quality data from Group 8, this interactive dashboard enables us
 ### **Gun Violence Data Visualization in NM**  
 Contributor: **DT**  
 Using data from Group 12 focused on **gun violence in New Mexico**, this dashboard allows users to view statistics by **date** or **city**, choosing metrics such as *victims injured*, *suspects injured*, *killed*, or *arrested*. All visualizations are presented as **bar charts** for intuitive comparisons.  
-[Streamlit Link](https://untitled2py-2zn5bldhgddpnjthbjxykd.streamlit.app/) """
+[Streamlit Link](https://untitled2py-2zn5bldhgddpnjthbjxykd.streamlit.app/) """)
 
