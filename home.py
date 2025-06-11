@@ -1,18 +1,26 @@
 import streamlit as st
 
-st.set_page_config(
-    page_title="CSV Visualization Dashboard Book",
-    page_icon="📊",
-    layout="wide",
-)
 
-st.title("📘 Welcome to the CSV Visualization Dashboard Book")
-st.markdown(
-    """
-    This application contains interactive dashboards for multiple datasets.
+st.title("Group-020")
 
-    Use the **sidebar** to navigate between the available pages.
-    
-    Each page presents visualizations for a specific dataset
-    """
-)
+st.markdown("""
+This dashboard explores datasets related to mental health, wellness programs, and youth-related funding across the U.S., with an emphasis on New Mexico.
+
+The project analyzes the **distribution of mental health funding**, **wellness program effectiveness**, and **educational grants** designed to support adolescent development. The data is sourced from various state and federal agencies and focuses on both pre-pandemic and post-pandemic funding initiatives.
+
+---
+
+### Key Focus Areas:
+
+- **Mental Health Services & Trends**: Explore state-level patterns in mental health needs and service availability.
+- **Youth Development Grants**: Track education- and wellness-related grants distributed across various counties.
+- **Post-COVID Shifts**: Understand how priorities in health and education funding changed during and after the pandemic.
+
+---
+
+Navigate through the pages to interact with individual datasets and visualize insights:
+- `page1.py` – Youth Grants Overview  
+- `page2.py` – Mental Health Services by State  
+- `page3.py` – Community Wellness Initiatives  
+
+""")
